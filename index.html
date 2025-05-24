@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuuriya | Build Website with Mobile Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif; /* Modern, clean font */
+      background: linear-gradient(to bottom right, #0f2027, #2c5364, #203a43); /* Deeper, richer gradient */
+      color: #e0e0e0; /* Softer white for better readability */
+      line-height: 1.7;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3em;
+      color: #00ffd5; /* Accent color */
+      text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #a0a0a0;
+      margin-top: 5px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex; /* Use flexbox for horizontal alignment */
+      justify-content: center; /* Center navigation items */
+      flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+      gap: 15px; /* Add space between navigation items */
+    }
+
+    nav a {
+      color: #00ffd5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05em;
+      transition: color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      padding: 5px 0; /* Add padding for better click area */
+      white-space: nowrap; /* Prevent navigation items from breaking into multiple lines within themselves */
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #00ffd5;
+      left: 50%;
+      bottom: -5px;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    nav a:hover {
+      color: #00e6c5;
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 900px; /* Max width for content sections */
+      width: 90%; /* Use 90% of the viewport width */
+      margin: 50px auto;
+      background-color: rgba(255, 255, 255, 0.08); /* Slightly less transparent */
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00ffd5;
+      font-size: 2.2em;
+      border-bottom: 2px solid rgba(0, 255, 213, 0.3);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    
+    section h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00ffd5;
+      font-size: 1.6em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    section p, section ul, section ol {
+      color: #d0d0d0;
+      font-size: 1.05em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin-top: 60px;
+      color: #a0a0a0;
+      font-size: 0.9em;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      /* Add flexbox to footer for centering social icons and text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px; /* Space between elements in footer */
+    }
+
+    .social a {
+      margin: 0 15px;
+      color: #00ffd5;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social a:hover {
+      color: #00e6c5;
+      transform: scale(1.1);
+    }
+
+    /* Images within content sections */
+    .content-image {
+      width: 100%;
+      max-width: 600px; /* Limit max width for better aesthetic */
+      height: auto;
+      border-radius: 10px;
+      margin: 30px auto; /* Center image */
+      display: block; /* Ensures margin auto works */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Video Embeds */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      margin-top: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Tools Section Specific Styling */
+    .tool-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .tool-item {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .tool-item:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .tool-item img {
+        width: 70px; /* Slightly smaller for logos */
+        height: 70px; /* Maintain aspect ratio */
+        border-radius: 10px;
+        margin-right: 20px;
+        object-fit: cover; /* Ensure image covers the area */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .tool-item div strong a {
+        color: #00ffd5;
+        text-decoration: none;
+        font-size: 1.15em;
+    }
+
+    .tool-item div p { /* For description text */
+        margin: 5px 0 0;
+        color: #c0c0c0;
+        font-size: 0.95em;
+    }
+
+    /* GitHub Guide Specific Styling (No images here now) */
+    .github-step {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Account Creation Form Styling */
+    .account-form-group {
+      margin-bottom: 20px;
+    }
+
+    .account-form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #00ffd5;
+    }
+
+    .account-form-group input[type="text"],
+    .account-form-group input[type="email"] {
+      width: calc(100% - 20px); /* Adjust for padding */
+      padding: 12px;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      font-size: 1em;
+      box-sizing: border-box; /* Include padding in width */
+    }
+
+    .account-form-group input[type="text"]:focus,
+    .account-form-group input[type="email"]:focus {
+      outline: none;
+      border-color: #00ffd5;
+      box-shadow: 0 0 8px rgba(0, 255, 213, 0.5);
+    }
+
+    .account-submit-btn {
+      background-color: #00ffd5;
+      color: #0f2027; /* Dark text for contrast */
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .account-submit-btn:hover {
+      background-color: #00e6c5;
+      transform: translateY(-2px);
+    }
+
+    /* --- Social Media Icons with Tooltip CSS --- */
+    /* Container for the social icons in the footer to center them */
+    .social-icons-container {
+        display: flex;
+        justify-content: center; /* Center the icons horizontally */
+        gap: 20px; /* Space between icons */
+        margin-bottom: 15px; /* Space above copyright text */
+        flex-wrap: wrap; /* Allow icons to wrap on small screens */
+    }
+
+    .social-icons-container .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        /* Basic icon styling */
+        width: 50px; /* Smaller size for footer icons */
+        height: 50px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+    .social-icons-container .icon span {
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .social-icons-container .icon span i {
+        font-size: 25px; /* Icon size */
+        color: #0f2027; /* Dark color for icons initially */
+    }
+
+    .social-icons-container .icon .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background: #000; /* Dark background for tooltip */
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform: translateY(-20px); /* Start slightly above */
+    }
+
+    /* Hover effects for icons */
+    .social-icons-container .icon:hover .tooltip {
+        opacity: 1;
+        top: -45px; /* Move up when hovered */
+        transform: translateY(0);
+    }
+
+    .social-icons-container .icon:hover span {
+        color: #fff; /* Icon color changes on hover */
+    }
+
+    /* Specific hover colors for each icon */
+    .social-icons-container .icon.facebook:hover span {
+        background: #1877f2; /* Facebook blue */
+    }
+    .social-icons-container .icon.facebook:hover span i {
+        color: #fff;
+    }
+
+    .social-icons-container .icon.youtube:hover span {
+        background: #ff0000; /* Youtube red */
+    }
+    .social-icons-container .icon.youtube:hover span i {
+        color: #fff;
+    }
+
+    .social-icons-container .icon.tiktok:hover span {
+        background: #000; /* TikTok black */
+    }
+    .social-icons-container .icon.tiktok:hover span i {
+        color: #fff;
+    }
+    /* --- End Social Media Icons with Tooltip CSS --- */
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      nav a {
+        margin: 5px 8px; /* Yaraynay margin-ka mobilada */
+        font-size: 0.9em;
+      }
+      section {
+        margin: 30px auto; /* Center on smaller screens too */
+        padding: 25px;
+        width: 95%; /* Make it slightly wider on smaller screens */
+      }
+      section h2 {
+        font-size: 1.8em;
+      }
+      .tool-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      .tool-item img {
+        margin: 0 0 15px 0;
+      }
+      .social-icons-container {
+          gap: 15px; /* Reduce gap on smaller screens */
+      }
+      .social-icons-container .icon {
+          width: 45px; /* Slightly smaller icons on mobile */
+          height: 45px;
+      }
+      .social-icons-container .icon span i {
+          font-size: 22px;
+      }
+      .social-icons-container .icon:hover .tooltip {
+          top: -40px; /* Adjust tooltip position for smaller icons */
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+      nav a {
+        display: block; /* Waxaan ka dhignay kuwo block ah si ay u kala soocmaan */
+        margin: 10px 0;
+      }
+      section {
+        padding: 20px;
+        width: 95%; /* Maintain width on very small screens */
+      }
+      section h2 {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Kuuriya</h1>
+    <p>Your Guide to Building Websites with Just a Mobile Phone</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#build-guide">Build Guide</a>
+      <a href="#github-repo">GitHub Guide</a>
+      <a href="#tools">Tools</a>
+      <a href="#faq">FAQ</a>
+      <a href="#create-account">Create Account</a> 
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  
+  <section id="about">
+    <h2>Welcome to My Website!</h2>
+    <p>My name is Kuuriya. I created this website using only my mobile phone — no laptop, no computer, and no traditional tools. This website is a living example that you can build and publish a complete website with just a phone.</p>
+    <p>The idea sparked from a personal challenge: could I truly build something fully functional without a traditional setup? It was a journey of discovery, overcoming challenges, and finding innovative solutions. When I finally saw this site live, knowing it was built entirely on my phone, the sense of accomplishment was incredible. I want to share that feeling and empower you to do the same!</p>
+    <p>I used free apps and tools available on mobile to write code, organize files, and publish the site online. Below, you’ll find all the steps and tools I used, so you can do it too.</p>
+    <img src="https://i.ibb.co/HTJwSxB0/IMG-8661.jpg" alt="Kuuriya building website on phone" class="content-image">
+  </section>
+
+  <section id="build-guide">
+    <h2>What You Need to Build a Website Using Only Your Phone</h2>
+    <p>Building a website on your phone is 100% possible! You don’t need a laptop or expensive tools. Here’s everything you need:</p>
+    <ul>
+      <li><strong>1. A Code Editor App:</strong> You need an app to write and save code.
+        <ul>
+          <li>**Acode (Android):** Powerful and easy to use.</li>
+          <li>**Spck Editor (Android):** Great for GitHub users.</li>
+          <li>**Kodex (iOS)::</strong> If you use an iPhone.</li>
+        </ul>
+      </li>
+      <li><strong>2. A Browser:</strong> Use your phone’s browser (like Chrome or Safari) to preview your website.</li>
+      <li><strong>3. File Manager (Optional):</strong> To organize your files (HTML, images, CSS, etc.).</li>
+      <li><strong>4. GitHub App (Optional):</strong> For publishing your website online.
+        <ul>
+          <li>Create an account on GitHub.</li>
+          <li>Upload your index.html file to a new repository.</li>
+          <li>Use GitHub Pages to make your site live for free.</li>
+          </ul>
+      </li>
+      <li><strong>5. Internet Connection:</strong> Needed only when uploading your site or installing apps. You can write code offline.</li>
+    </ul>
+
+    <h3>🚀 Quick Guide: How to Make a New Repository and Go Live</h3>
+    <ol>
+      <li>Install a code editor like **Spck Editor** from the Play Store and open it.</li>
+      <li>Create a **GitHub** account (if you don't have one) and then create a new repository.</li>
+      <li>In your code editor (e.g., Spck Editor), start a new project and create an `index.html` file.</li>
+      <li>Link your project with your GitHub repository through the Git settings in your code editor.</li>
+      <li>**Commit** your changes (save them to your Git history) and then **Push** them to GitHub.</li>
+      <li>Go to your GitHub repository on the web, navigate to **Settings** > **Pages**, and **Enable GitHub Pages** for your `main` branch.</li>
+      <li>Your site will be live at: `https://yourusername.github.io` (replace `yourusername` with your actual GitHub username).</li>
+    </ol>
+
+    <p>This guide is meant to show that anyone can create a modern website using only a smartphone. Just follow the steps above and explore — it’s easier than you think!</p>
+  </section>
+
+  ---
+
+  <section id="github-repo">
+    <h2>Step-by-Step: Create a GitHub Repository & Publish Your Website</h2>
+    <p>GitHub repositories store a variety of projects. In this guide, you'll learn how to create a repository, add your website files, and then publish your site using GitHub Pages.</p>
+
+    <img src="https://i.ibb.co/F4Y3wFsc/IMG-8659.jpg" alt="GitHub New Repository Page Example" class="content-image">
+
+    <div class="github-step">
+        <h3>1. Create a New Repository</h3>
+        <p>Visit: <a href="https://github.com/new" target="_blank">https://github.com/new</a></p>
+        <p>In the upper-right corner of any GitHub page, select the '+' icon (or your profile dropdown), then click **New repository**.</p>
+    </div>
+
+    <div class="github-step">
+        <h3>2. Name Your Repository and Add Details</h3>
+        <ul>
+            <li>For **Repository name**, enter: `yourusername.github.io` (e.g., `kuuriyawep.github.io`). This specific naming convention is crucial for GitHub Pages to automatically serve your website.</li>
+            <li>For **Description**, optionally add: "My personal website built with HTML"</li>
+            <li>Under **Public / Private**, select: **Public** (required for GitHub Pages)</li>
+            <li>Under **Initialize**, check: `[✔] Add a README file` (optional, but good practice for project description)</li>
+        </ul>
+    </div>
+
+    <div class="github-step">
+        <h3>3. Create Repository</h3>
+        <p>Click the **"Create repository"** button.</p>
+        <p>Congratulations! You've successfully created your first repository.</p>
+    </div>
+
+    ---
+
+    <h3>How to Add `index.html` Code Inside the New Repository</h3>
+
+    <div class="github-step">
+        <h3>1. Go to your New Repository</h3>
+        <p>Navigate to your newly created repository. For example, if you named it `kuuriyawep.github.io`, go to: <a href="https://github.com/kuuriyawep/kuuriyawep.github.io" target="_blank">https://github.com/kuuriyawep/kuuriyawep.github.io</a></p>
+    </div>
+
+    <div class="github-step">
+        <h3>2. Add a New File (`index.html`)</h3>
+        <ol>
+            <li>Click: **Add file**</li>
+            <li>Select: **Create new file**</li>
+            <li>Type the filename as: `index.html` (this is the default file GitHub Pages looks for to display your website).</li>
+        </ol>
+    </div>
+
+    <div class="github-step">
+        <h3>3. Write Your HTML Code</h3>
+        <p>In the text editor, paste or type your HTML code. This `index.html` file will be the main page of your website.</p>
+        <pre><code><!DOCTYPE html>
+<html>
+  <head>
+    <title>My Awesome Mobile Website</title>
+  </head>
+  <body>
+    <h1>Hello, World! This is my first website built on a phone!</h1>
+    <p>I can add paragraphs, <strong>bold text</strong>, and <a href="https://github.com/kuuriyawep">links</a>.</p>
+    <h2>A Subheading</h2>
+    <p>Learning to code on a phone is really exciting.</p>
+  </body>
+</html></code></pre>
+    </div>
+
+    <div class="github-step">
+        <h3>4. Save the File (Commit Changes)</h3>
+        <ol>
+            <li>Scroll down to the "Commit changes" section.</li>
+            <li>In the **Commit message** field, write a short, meaningful message like: `Add index.html` or `Initial website setup`.</li>
+            <li>Click the **"Commit new file"** button.</li>
+        </ol>
+        <p>This saves your `index.html` file to your repository's `main` branch.</p>
+    </div>
+
+    ---
+
+    <h3>How to Publish Your Website Using GitHub Pages</h3>
+    
+    <div class="github-step">
+        <h3>1. Open Repository Settings for Pages</h3>
+        <p>Go to your repository's settings for GitHub Pages. You can find this by navigating to your repository (e.g., `https://github.com/kuuriyawep/kuuriyawep.github.io`), then clicking on **Settings** in the top navigation bar, and then **Pages** from the left sidebar. Alternatively, use this direct link: <a href="https://github.com/kuuriyawep/kuuriyawep.github.io/settings/pages" target="_blank">https://github.com/kuuriyawep/kuuriyawep.github.io/settings/pages</a></p>
+    </div>
+
+    <div class="github-step">
+        <h3>2. Set up GitHub Pages Source</h3>
+        <ol>
+            <li>Under **"Build and deployment"**, find the **"Source"** section.</li>
+            <li>From the dropdown menu, select: `main branch`</li>
+            <li>Then choose: `/ (root)`</li>
+            <li>Click: **Save**</li>
+        </ol>
+    </div>
+
+    <div class="github-step">
+        <h3>3. Get Your Website Link</h3>
+        <p>After a few seconds, GitHub Pages will deploy your website. You'll see a message confirming that "Your site is live at...". Your site will typically be live at:</p>
+        <p><a href="https://kuuriyawep.github.io" target="_blank">https://kuuriyawep.github.io</a> (replace `kuuriyawep` with your GitHub username)</p>
+        <p>It might take a few minutes for the site to become fully accessible after deployment. If you don't see it immediately, give it a few minutes and refresh the page.</p>
+    </div>
+
+    <h3>Next Steps on GitHub</h3>
+    <p>You have now created a repository, including a README file, and created your first commit on GitHub. This is just the beginning!</p>
+    <ul>
+      <li>**Clone a Repository:** You can clone a GitHub repository to create a local copy on your computer (or your phone with advanced apps). From your local repository, you can commit changes and create a pull request to update the changes in the upstream repository. <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" target="_blank">Learn more about Cloning a repository</a> and <a href="https://docs.github.com/en/get-started/getting-started-with-git/set-up-git" target="_blank">Set up Git</a>.</li>
+      <li>**Secure Your Repository:** Secure your repository using GitHub's available security features. <a href="https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/quickstart-for-securing-your-repository" target="_blank">Learn more about securing your repository</a>.</li>
+      <li>**Fork a Repository:** You can find interesting projects and repositories on GitHub and make changes to them by creating a fork of the repository. Forking a repository will allow you to make changes to another repository without affecting the original. <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo" target="_blank">Learn more about Forking a repository</a>.</li>
+      <li>**Find Inspiration:** Each repository on GitHub is owned by a person or an organization. You can interact with the people, repositories, and organizations by connecting and following them on GitHub. <a href="https://docs.github.com/en/get-started/exploring-github/finding-inspiration-on-github" target="_blank">Learn more about finding inspiration on GitHub</a>.</li>
+      <li>**Join the Community:** GitHub has a great support community where you can ask for help and talk to people from around the world. <a href="https://github.com/community" target="_blank">Join the conversation on GitHub Community</a>.</li>
+    </ul>
+  </section>
+
+  ---
+
+  <section id="video-guide">
+    <h2>Watch My Video Guide</h2>
+    <p>Here's a video guide explaining the process visually. Make sure to replace the placeholder link below with your actual YouTube video link once you have your video ready:</p>
+    <div class="video-container">
+      <iframe 
+        src="http://www.youtube.com/embed/your-video-id" 
+        title="YouTube video player" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  ---
+
+  <section id="tools">
+    <h2>📱 Tools I Used to Build This Website</h2>
+    <p>I used only my phone and a few helpful apps to build this website. Below are the main tools I used and what each one does:</p>
+    
+    <ul class="tool-list">
+      <li class="tool-item">
+        <img src="https://i.ibb.co/3s5XQ5t/spck-editor-logo.png" alt="Spck Editor Logo">
+        <div>
+          <strong><a href="https://play.google.com/store/apps/details?id=io.spck" target="_blank">Spck Editor</a></strong>
+          <p>A powerful code editor for Android. I used it to write and edit HTML, CSS, and JavaScript files directly from my phone. It has built-in Git integration which makes syncing with GitHub easy.</p>
+        </div>
+      </li>
+      
+      <li class="tool-item">
+        <img src="https://i.ibb.co/GnHq73G/acode-logo.png" alt="Acode Logo">
+        <div>
+          <strong><a href="https://play.google.com/store/apps/details?id=org.acode" target="_blank">Acode</a></strong>
+          <p>Another great Android code editor. Supports syntax highlighting and live file previews. You can also run small websites locally for testing.</p>
+        </div>
+      </li>
+      
+      <li class="tool-item">
+        <img src="https://i.ibb.co/Q8Q8f3c/kodex-logo.png" alt="Kodex Logo">
+        <div>
+          <strong><a href="https://apps.apple.com/us/app/kodex/id1038574481" target="_blank">Kodex (iOS)</a></strong>
+          <p>For iPhone users, Kodex is a full-featured code editor with syntax highlighting, tabs, and powerful file management capabilities.</p>
+        </div>
+      </li>
+      
+      <li class="tool-item">
+        <img src="https://i.ibb.co/q1z6R1M/github-logo.png" alt="GitHub Logo">
+        <div>
+          <strong><a href="https://github.com/" target="_blank">GitHub</a></strong>
+          <p>This is where my website code is hosted. GitHub provides free hosting through GitHub Pages, which is what I used to make this site live for the world to see.</p>
+        </div>
+      </li>
+      
+      <li class="tool-item">
+        <img src="https://i.ibb.co/q1z6R1M/github-logo.png" alt="GitHub Mobile App Logo">
+        <div>
+          <strong><a href="https://play.google.com/store/apps/details?id=com.github.android" target="_blank">GitHub Mobile App</a></strong>
+          <p>While coding was done in Spck Editor, the GitHub app helped me manage my repository, review commits, and stay updated on my project's status directly from my phone.</p>
+        </div>
+      </li>
+    </ul>
+    
+    <p>All of these apps are free or have free versions and are available on Android or iOS. No laptop needed — just creativity and consistency!</p>
+  </section>
+
+  ---
+
+  <section id="faq">
+    <h2>Frequently Asked Questions (FAQ)</h2>
+    <div class="github-step">
+        <h3>Q: Do I need to pay anything to build a website using this guide?</h3>
+        <p><strong>A:</strong> No, absolutely not! All the tools and methods described in this guide, including hosting on GitHub Pages, are completely free to use. This entire website was built without any cost.</p>
+    </div>
+    <div class="github-step">
+        <h3>Q: How long does it take to build my first website?</h3>
+        <p><strong>A:</strong> The basic steps to get your first HTML page live can be completed in just a few hours. Learning more advanced concepts like CSS and JavaScript will take more time, but the initial setup is very quick.</p>
+    </div>
+    <div class="github-step">
+        <h3>Q: Can I add more advanced features like CSS or JavaScript?</h3>
+        <p><strong>A:</strong> Yes! Once you understand the basics of HTML and how to publish, you can easily add CSS files to style your website and JavaScript files to add interactive features. Just upload them to your GitHub repository alongside your `index.html`.</p>
+    </div>
+    <div class="github-step">
+        <h3>Q: What if I don't have an Android phone?</h3>
+        <p><strong>A:</strong> No problem! The guide includes `Kodex` for iOS users. While the specific steps for code editors might differ slightly, the core principles of writing HTML and using GitHub remain the same across platforms.</p>
+    </div>
+  </section>
+
+  ---
+
+  <section id="whats-next">
+    <h2>What's Next? Continue Your Web Development Journey!</h2>
+    <p>Congratulations on building your first website with just your phone! This is a huge accomplishment. But the journey doesn't stop here. Here are some next steps to deepen your web development skills:</p>
+    <ul>
+      <li><strong>Learn CSS for Styling:</strong> Your website needs to look good! CSS (Cascading Style Sheets) is used to control the colors, fonts, layout, and overall appearance of your web pages.</li>
+      <li><strong>Master JavaScript for Interactivity:</strong> Bring your website to life with JavaScript. This language allows you to add dynamic features, animations, form validations, and much more.</li>
+      <li><strong>Build Multi-Page Websites:</strong> Instead of just one `index.html`, learn how to link multiple HTML pages together to create a full website with different sections (e.g., About, Services, Contact).</li>
+      <li><strong>Explore Responsive Design:</strong> Make sure your website looks great on all devices, from small phones to large desktop screens. This is crucial for a modern web presence.</li>
+      <li><strong>Consider a Custom Domain:</strong> While `yourusername.github.io` is free, you can eventually connect a custom domain name (like `yourwebsite.com`) to your GitHub Pages site for a more professional look (this usually involves a small cost for the domain name itself).</li>
+    </ul>
+    <p>Keep experimenting, keep learning, and don't be afraid to break things and fix them. That's how you truly learn!</p>
+  </section>
+
+  <section id="create-account">
+    <h2>Create Your Account</h2>
+    <p>Fill out the form below to create your account and get access to exclusive content and updates! Join our community of mobile web developers!</p>
+    <form action="#" method="POST"> 
+      <div class="account-form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="account-form-group">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <button type="submit" class="account-submit-btn">Create Account</button>
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Have questions or want to share your mobile website journey? You can reach me directly via call or WhatsApp:</p>
+    
+    <div class="social">
+      <a href="tel:+252672135967">📞 Call Me</a>
+      <a href="https://wa.me/252636683366" target="_blank">💬 WhatsApp Me</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-icons-container">
+        <div class="icon facebook">
+            <div class="tooltip">Facebook</div>
+            <a href="https://www.facebook.com/yourprofile" target="_blank" aria-label="Facebook Profile"><span><i class="fa-brands fa-facebook"></i></span></a>
+        </div>
+
+        <div class="icon youtube">
+            <div class="tooltip">Youtube</div>
+            <a href="https://www.youtube.com/yourchannel" target="_blank" aria-label="YouTube Channel"><span><i class="fa-brands fa-youtube"></i></span></a>
+        </div>
+
+        <div class="icon tiktok">
+            <div class="tooltip">Tiktok</div>
+            <a href="https://www.tiktok.com/@yourprofile" target="_blank" aria-label="TikTok Profile"><span><i class="fa-brands fa-tiktok"></i></span></a>
+        </div>
+        </div>
+    <p>© 2025 Kuuriya. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
